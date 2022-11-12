@@ -13,6 +13,10 @@ namespace GameMatch
         [SerializeField] private GridArea _grid;
         [SerializeField] private PlayerType _currentPlayer;
         private GridSlot[][] _slotsGrid;
+        private SequentialChecker[] _sequenceCheckers = new SequentialChecker[]
+        {
+            new VerticalChecker()
+        };
 
         public PlayerType CurrentPlayer => _currentPlayer;
 
@@ -33,7 +37,32 @@ namespace GameMatch
         private void OnSlotClicked(GridSlot slot)
         {
             slot.SetPlayer(_currentPlayer);
-            NextPlayer();
+            
+            GridSlot[] slotsSequence = GetSequence(slot);
+            bool hasFinished = slotsSequence != null;
+            
+            if (!hasFinished)
+            {
+                NextPlayer();
+            }
+            else
+            {
+                Debug.Log($"Player {_currentPlayer} won!");
+            }
+        }
+
+        private GridSlot[] GetSequence(GridSlot slot)
+        {
+            foreach (var sequenceChecker in _sequenceCheckers)
+            {
+                GridSlot[] sequence = sequenceChecker.GetSequentialSlots(slot, _slotsGrid);
+                if (sequence != null)
+                {
+                    return sequence;
+                }
+            }
+
+            return null;
         }
 
         private void SelectFirstPlayer()
