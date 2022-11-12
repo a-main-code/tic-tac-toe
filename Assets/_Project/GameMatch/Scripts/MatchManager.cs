@@ -9,7 +9,7 @@ namespace GameMatch
 {
     public class MatchManager : MonoBehaviour
     {
-        [SerializeField] private GridSize _gridSize;
+        [SerializeField] private IntVector2 _gridSize;
         [SerializeField] private GridArea _grid;
         [SerializeField] private PlayerType _currentPlayer;
 

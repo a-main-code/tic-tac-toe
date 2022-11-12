@@ -9,15 +9,15 @@ namespace GameGrid
     {
         [SerializeField] private GridLine _gridLinePrefab;
 
-        public void Initialize(GridSize gridSize, Action<GridSlot> onSlotClicked)
+        public void Initialize(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
         {
-            for (int i = 0; i < gridSize.height; i++)
+            for (int i = 0; i < gridSize.x; i++)
             {
-                CreateLine(i, gridSize.width, onSlotClicked);
+                CreateLine(i, gridSize.y, onSlotClicked);
             }
         }
 
-        private void CreateLine(int lineId, uint width, Action<GridSlot> onSlotClicked)
+        private void CreateLine(int lineId, int width, Action<GridSlot> onSlotClicked)
         {
             GridLine line = Instantiate<GridLine>(_gridLinePrefab, transform);
             line.Initialize(lineId, width, onSlotClicked);

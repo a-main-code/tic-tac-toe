@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gridSize:
-    height: 3
-    width: 3
+    x: 3
+    y: 3
   _grid: {fileID: 0}
   _currentPlayer: -1

@@ -10,6 +10,10 @@ namespace GameGrid
         [SerializeField] private Button _button;
         [SerializeField] private TextMeshProUGUI _playerText;
         [SerializeField] private PlayerType _playerType;
+        [SerializeField] private IntVector2 _coordinate;
+
+        public IntVector2 Coordinate => _coordinate;
+
         private Action<GridSlot> onSlotClicked;
 
         private void Awake()
@@ -18,8 +22,9 @@ namespace GameGrid
             SetPlayer(_playerType);
         }
 
-        internal void Initialize(Action<GridSlot> onSlotClicked)
+        internal void Initialize(IntVector2 coordinate, Action<GridSlot> onSlotClicked)
         {
+            _coordinate = coordinate;
             this.onSlotClicked = onSlotClicked;
         }
 
