@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 6457720206079316668}
+  _playerText: {fileID: 7058252324811221621}
+  _playerType: 0
 --- !u!1 &7470973091477059274
 GameObject:
   m_ObjectHideFlags: 0
