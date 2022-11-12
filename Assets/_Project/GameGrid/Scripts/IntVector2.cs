@@ -18,5 +18,15 @@ namespace GameGrid
         {
             return $"({x}, {y})";
         }
+
+        public static IntVector2 operator *(IntVector2 vector1, IntVector2 vector2)
+        {
+            return new IntVector2(vector1.x * vector2.x, vector1.y * vector2.y);
+        }
+
+        public static IntVector2 operator +(IntVector2 vector1, IntVector2 vector2)
+        {
+            return new IntVector2(vector1.x + vector2.x, vector1.y + vector2.y);
+        }
     }
 }

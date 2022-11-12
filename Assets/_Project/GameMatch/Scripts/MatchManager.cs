@@ -15,7 +15,8 @@ namespace GameMatch
         private GridSlot[][] _slotsGrid;
         private SequentialChecker[] _sequenceCheckers = new SequentialChecker[]
         {
-            new VerticalChecker()
+            new VerticalChecker(),
+            new HorizontalChecker()
         };
 
         public PlayerType CurrentPlayer => _currentPlayer;
@@ -37,7 +38,7 @@ namespace GameMatch
         private void OnSlotClicked(GridSlot slot)
         {
             slot.SetPlayer(_currentPlayer);
-            
+
             GridSlot[] slotsSequence = GetSequence(slot);
             bool hasFinished = slotsSequence != null;
             
