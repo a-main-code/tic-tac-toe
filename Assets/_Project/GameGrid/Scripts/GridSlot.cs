@@ -12,6 +12,7 @@ namespace GameGrid
         [SerializeField] private PlayerType _playerType;
         [SerializeField] private IntVector2 _coordinate;
 
+        public PlayerType PlayerType => _playerType;
         public IntVector2 Coordinate => _coordinate;
 
         private Action<GridSlot> onSlotClicked;

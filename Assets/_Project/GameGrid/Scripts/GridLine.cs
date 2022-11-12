@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameGrid
@@ -7,18 +6,18 @@ namespace GameGrid
     public class GridLine : MonoBehaviour
     {
         [SerializeField] private GridSlot _slotPrefab;
-        private List<GridSlot> slots;
+        private GridSlot[] slots;
 
-        public List<GridSlot> Slots => slots;
+        public GridSlot[] Slots => slots;
 
-        public List<GridSlot> Initialize(int lineId, int width, Action<GridSlot> onSlotClicked)
+        public GridSlot[] Initialize(int lineId, int width, Action<GridSlot> onSlotClicked)
         {
-            slots = new();
+            slots = new GridSlot[width];
             
             for (int i = 0; i < width; i++)
             {
                 IntVector2 coordinate = new IntVector2(i, lineId);
-                slots.Add(CreateSlot(coordinate, onSlotClicked));
+                slots[i] = CreateSlot(coordinate, onSlotClicked);
             }
             return slots;
         }
