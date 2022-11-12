@@ -14,6 +14,12 @@ namespace GameGrid
             this.y = y;
         }
 
+        public IntVector2(IntVector2 toClone)
+        {
+            x = toClone.x;
+            y = toClone.y;
+        }
+
         public override string ToString()
         {
             return $"({x}, {y})";

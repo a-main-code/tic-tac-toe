@@ -16,7 +16,9 @@ namespace GameMatch
         private SequentialChecker[] _sequenceCheckers = new SequentialChecker[]
         {
             new VerticalChecker(),
-            new HorizontalChecker()
+            new HorizontalChecker(),
+            new MainDiagonalChecker(),
+            new SecondaryDiagonalChecker(),
         };
 
         public PlayerType CurrentPlayer => _currentPlayer;

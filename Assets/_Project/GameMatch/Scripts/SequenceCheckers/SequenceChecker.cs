@@ -52,11 +52,18 @@ namespace GameMatch
 
         private GridSlot GetSlot(IntVector2 coordinate, GridSlot[][] slotsGrid)
         {
-            if (coordinate.y >= slotsGrid.Length || coordinate.x >= slotsGrid[coordinate.y].Length)
+            if (!IsInInterval(coordinate.y, 0, slotsGrid.Length) ||
+                !IsInInterval(coordinate.x, 0, slotsGrid[coordinate.y].Length)
+            )
                 return null;
             
             GridSlot slot = slotsGrid[coordinate.y][coordinate.x];
             return slot;
+        }
+
+        private bool IsInInterval(int value, int minInclusive, int maxExclusive)
+        {
+            return value >= minInclusive && value < maxExclusive;
         }
 
         protected abstract IntVector2 GetFirstCoordinate(GridSlot targetSlot, GridSlot[][] slotsGrid);
