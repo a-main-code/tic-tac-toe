@@ -10,8 +10,16 @@ namespace GameMatch
     {
         private static List<GridSlot> _cacheSlots = new();
 
+        public GridSlot[] GetSequentialSlots(GridSlot targetSlot, GridSlot[][] slotsGrid)
+        {
+            return GetSequentialSlots(targetSlot, slotsGrid, slotsGrid.Length);
+        }
+
         public GridSlot[] GetSequentialSlots(GridSlot targetSlot, GridSlot[][] slotsGrid, int sequenceSize)
         {
+            if (targetSlot.PlayerType == PlayerType.None)
+                return null;
+
             _cacheSlots.Clear();
             GridSlot currentSlot = GetFirstSlot(targetSlot, slotsGrid);
 
@@ -21,7 +29,7 @@ namespace GameMatch
                     return null;
                 
                 _cacheSlots.Add(currentSlot);
-                currentSlot = GetNextSlot(targetSlot, slotsGrid);
+                currentSlot = GetNextSlot(currentSlot, slotsGrid);
             }
 
             return _cacheSlots.ToArray();
@@ -47,7 +55,8 @@ namespace GameMatch
             if (coordinate.y >= slotsGrid.Length || coordinate.x >= slotsGrid[coordinate.y].Length)
                 return null;
             
-            return slotsGrid[coordinate.x][coordinate.y];
+            GridSlot slot = slotsGrid[coordinate.y][coordinate.x];
+            return slot;
         }
 
         protected abstract IntVector2 GetFirstCoordinate(GridSlot targetSlot, GridSlot[][] slotsGrid);

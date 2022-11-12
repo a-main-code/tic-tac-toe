@@ -10,7 +10,7 @@ namespace GameGrid
 
         public GridSlot[] Slots => slots;
 
-        public GridSlot[] Initialize(int lineId, int width, Action<GridSlot> onSlotClicked)
+        public GridSlot[] Initialize(int width, int lineId, Action<GridSlot> onSlotClicked)
         {
             slots = new GridSlot[width];
             

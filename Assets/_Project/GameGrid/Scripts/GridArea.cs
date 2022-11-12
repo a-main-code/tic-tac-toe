@@ -11,19 +11,19 @@ namespace GameGrid
 
         public GridSlot[][] Initialize(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
         {
-            GridSlot[][] slotsGrid = new GridSlot[gridSize.x][];
-            for (int i = 0; i < gridSize.x; i++)
+            GridSlot[][] slotsGrid = new GridSlot[gridSize.y][];
+            for (int lineId = 0; lineId < gridSize.y; lineId++)
             {
-                GridLine line = CreateLine(i, gridSize.y, onSlotClicked);
-                slotsGrid[i]  = line.Slots;
+                GridLine line = CreateLine(gridSize.x, lineId, onSlotClicked);
+                slotsGrid[lineId]  = line.Slots;
             }
             return slotsGrid;
         }
 
-        private GridLine CreateLine(int lineId, int width, Action<GridSlot> onSlotClicked)
+        private GridLine CreateLine(int width, int lineId, Action<GridSlot> onSlotClicked)
         {
             GridLine line = Instantiate<GridLine>(_gridLinePrefab, transform);
-            line.Initialize(lineId, width, onSlotClicked);
+            line.Initialize(width, lineId, onSlotClicked);
             return line;
         }
     }
