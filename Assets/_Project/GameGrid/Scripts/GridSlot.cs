@@ -28,7 +28,7 @@ namespace GameGrid
             _playerType = playerType;
             bool isFree = playerType == PlayerType.None;
 
-            SetText(isFree ? "" : playerType.ToString());            
+            SetText(playerType.ToFriendlyString());
             _button.interactable = isFree;
         }
 

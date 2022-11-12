@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using GameGrid;
 
 namespace GameMatch
@@ -11,6 +12,11 @@ namespace GameMatch
         [SerializeField] private GridSize _gridSize;
         [SerializeField] private GridArea _grid;
         [SerializeField] private PlayerType _currentPlayer;
+
+        public PlayerType CurrentPlayer => _currentPlayer;
+
+        public event UnityAction<PlayerType> OnCurrentPlayerChanged;
+
 
         private void Awake()
         {
@@ -31,13 +37,18 @@ namespace GameMatch
 
         private void SelectFirstPlayer()
         {
-            _currentPlayer = (PlayerType)UnityEngine.Random.Range(0, PlayerTypeHelpers.Count);
+            SetPlayer(UnityEngine.Random.Range(0, PlayerTypeHelpers.Count));
         }
 
         private void NextPlayer()
         {
-            int nextPlayerId = (int)_currentPlayer + 1;
-            _currentPlayer = (PlayerType)(nextPlayerId % PlayerTypeHelpers.Count);
+            SetPlayer((int)_currentPlayer + 1);
+        }
+
+        private void SetPlayer(int playerId)
+        {
+            _currentPlayer = (PlayerType)(playerId % PlayerTypeHelpers.Count);
+            OnCurrentPlayerChanged?.Invoke(_currentPlayer);
         }
     }
 }

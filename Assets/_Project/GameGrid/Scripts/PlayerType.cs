@@ -10,5 +10,12 @@ namespace GameGrid
     public static class PlayerTypeHelpers
     {
         public const int Count = 2;
+
+        public static string ToFriendlyString(this PlayerType playerType)
+        {
+            return playerType == PlayerType.None ?
+                "" :
+                playerType.ToString();
+        }
     }
 }
