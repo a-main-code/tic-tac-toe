@@ -25,16 +25,19 @@ namespace GameMatch
 
         private void OnSlotClicked(GridSlot slot)
         {
-            // TODO: Regras quando é clicado no slot
+            slot.SetPlayer(_currentPlayer);
+            NextPlayer();
         }
 
         private void SelectFirstPlayer()
         {
-            bool isXPlayer = UnityEngine.Random.Range(0, 2) == 0;
-            
-            _currentPlayer = isXPlayer ?
-                PlayerType.X :
-                PlayerType.O;
+            _currentPlayer = (PlayerType)UnityEngine.Random.Range(0, PlayerTypeHelpers.Count);
+        }
+
+        private void NextPlayer()
+        {
+            int nextPlayerId = (int)_currentPlayer + 1;
+            _currentPlayer = (PlayerType)(nextPlayerId % PlayerTypeHelpers.Count);
         }
     }
 }

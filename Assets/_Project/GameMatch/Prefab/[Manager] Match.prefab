@@ -48,3 +48,4 @@ MonoBehaviour:
     height: 3
     width: 3
   _grid: {fileID: 0}
+  _currentPlayer: -1
