@@ -12,6 +12,7 @@ namespace GameMatch
         [SerializeField] private IntVector2 _gridSize;
         [SerializeField] private GridArea _grid;
         [SerializeField] private PlayerType _currentPlayer;
+        private List<GridSlot> _slots;
 
         public PlayerType CurrentPlayer => _currentPlayer;
 
@@ -26,7 +27,7 @@ namespace GameMatch
 
         private void BuildGrid()
         {
-            _grid.Initialize(_gridSize, OnSlotClicked);
+            _slots = _grid.Initialize(_gridSize, OnSlotClicked);
         }
 
         private void OnSlotClicked(GridSlot slot)
