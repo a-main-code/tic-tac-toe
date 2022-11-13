@@ -16,6 +16,9 @@ MonoBehaviour:
   - playerType: -1
     markBackgroundColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   - playerType: 0
-    markBackgroundColor: {r: 0.9811321, g: 0.30887783, b: 0, a: 1}
+    markBackgroundColor: {r: 0.9150943, g: 0.43367007, b: 0.081149824, a: 1}
   - playerType: 1
-    markBackgroundColor: {r: 0, g: 0.29813337, b: 0.7924528, a: 1}
+    markBackgroundColor: {r: 0.13020645, g: 0.41841197, b: 0.8962264, a: 1}
+  animationTime: 0.3
+  vibrato: 8
+  elasticity: 6

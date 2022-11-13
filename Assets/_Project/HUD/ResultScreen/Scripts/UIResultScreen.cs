@@ -11,7 +11,7 @@ namespace HUD
     public class UIResultScreen : MonoBehaviour
     {
         [SerializeField] private MatchManager _matchManager;
-        [SerializeField] private TextMeshProUGUI _playerText;
+        [SerializeField] private PlayerSymbol _playerSymbol;
         [SerializeField] private Button _restartButton;
         [SerializeField] private CanvasGroup _canvasGroup;
 
@@ -28,7 +28,7 @@ namespace HUD
         private void PlayerWin(PlayerType player)
         {
             OpenScreen(true);
-            _playerText.text = player.ToFriendlyString();
+            _playerSymbol.SetPlayer(player);
         }
 
         private void OpenScreen(bool open)
