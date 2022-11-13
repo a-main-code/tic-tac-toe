@@ -1,17 +1,25 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace GameGrid
 {
     public class GridArea : MonoBehaviour
     {
         [SerializeField] private GridLine _gridLinePrefab;
+        [SerializeField] private float _transitionTime = 0.1f;
+        [SerializeField] private float _transitionStrength = 0.1f;
         private List<GridLine> _lines = new();
+
 
         public void CreateSlots(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
         {
-            CreateLines(lineWidth: gridSize.x, quantity: gridSize.y, onSlotClicked);
+            Action<GridSlot> gridRegisteredOnClick = (slot) => {
+                this.OnSlotClicked(slot);
+                onSlotClicked.Invoke(slot);
+            };
+            CreateLines(lineWidth: gridSize.x, quantity: gridSize.y, gridRegisteredOnClick);
         }
 
         private void CreateLines(int lineWidth, int quantity, Action<GridSlot> onSlotClicked)
@@ -40,6 +48,11 @@ namespace GameGrid
                 slotsGrid[lineId] = line.Slots;
             }
             return new SlotsMatrix(slotsGrid);
+        }
+
+        private void OnSlotClicked(GridSlot slot)
+        {
+            transform.DOShakeScale(_transitionTime, _transitionStrength);
         }
     }
 }

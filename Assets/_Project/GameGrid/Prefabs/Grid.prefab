@@ -118,3 +118,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridLinePrefab: {fileID: 3356646208506686796, guid: 727f390e4c464ab4a916fa8bcfd9f9c2,
     type: 3}
+  _transitionTime: 0.27
+  _transitionStrength: 0.05

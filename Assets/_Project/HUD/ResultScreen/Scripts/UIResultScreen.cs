@@ -14,8 +14,9 @@ namespace HUD
         [SerializeField] private PlayerSymbol _playerSymbol;
         [SerializeField] private Button _restartButton;
         [SerializeField] private CanvasGroup _canvasGroup;
+        [SerializeField] private float _transitionStrength = 1;
 
-        private const float TRANSITION_TIME = 1f;
+        private const float TRANSITION_TIME = 0.4f;
 
         private void Awake()
         {
@@ -36,6 +37,7 @@ namespace HUD
             float targetAlpha = open ? 1 : 0;
             _canvasGroup.DOFade(targetAlpha, TRANSITION_TIME);
             _canvasGroup.blocksRaycasts = open;
+            transform.DOShakeScale(TRANSITION_TIME, _transitionStrength);
         }
 
         private void Restart()

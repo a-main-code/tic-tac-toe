@@ -97,6 +97,9 @@ MonoBehaviour:
   _playerSymbol: {fileID: 5700087211549927975}
   _restartButton: {fileID: 2433213938501409060}
   _canvasGroup: {fileID: 6007452374588676993}
+  _transitionStrength: 0.3
+  _transitionVibrato: 10
+  _transitionRandomness: 90
 --- !u!1 &2433213938218496586
 GameObject:
   m_ObjectHideFlags: 0
