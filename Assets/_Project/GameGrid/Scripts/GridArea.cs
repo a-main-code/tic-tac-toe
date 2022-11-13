@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,23 +7,39 @@ namespace GameGrid
     public class GridArea : MonoBehaviour
     {
         [SerializeField] private GridLine _gridLinePrefab;
+        private List<GridLine> _lines = new();
 
-        public GridSlot[][] Initialize(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
+        public void CreateSlots(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
         {
-            GridSlot[][] slotsGrid = new GridSlot[gridSize.y][];
-            for (int lineId = 0; lineId < gridSize.y; lineId++)
+            CreateLines(lineWidth: gridSize.x, quantity: gridSize.y, onSlotClicked);
+        }
+
+        private void CreateLines(int lineWidth, int quantity, Action<GridSlot> onSlotClicked)
+        {
+            for (int lineId = 0; lineId < quantity; lineId++)
             {
-                GridLine line = CreateLine(gridSize.x, lineId, onSlotClicked);
-                slotsGrid[lineId]  = line.Slots;
+                GridLine line = CreateLine(lineWidth, lineId, onSlotClicked);
+                _lines.Add(line);
             }
-            return slotsGrid;
         }
 
         private GridLine CreateLine(int width, int lineId, Action<GridSlot> onSlotClicked)
         {
             GridLine line = Instantiate<GridLine>(_gridLinePrefab, transform);
-            line.Initialize(width, lineId, onSlotClicked);
+            line.CreateSlots(width, lineId, onSlotClicked);
             return line;
+        }
+
+        public SlotsMatrix GetSlotsMatrix()
+        {
+            GridSlot[][] slotsGrid = new GridSlot[_lines.Count][];
+            
+            for (int lineId = 0; lineId < _lines.Count; lineId++)
+            {
+                GridLine line = _lines[lineId];
+                slotsGrid[lineId] = line.Slots;
+            }
+            return new SlotsMatrix(slotsGrid);
         }
     }
 }

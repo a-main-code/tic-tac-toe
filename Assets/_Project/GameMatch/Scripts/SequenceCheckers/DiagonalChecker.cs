@@ -9,9 +9,8 @@ namespace GameMatch
 
         public override GridSlot[] GetSequentialSlots(GridSlot targetSlot, SlotsMatrix slotsMatrix)
         {
-            int y_size = slotsMatrix.Y_size;
-            int x_size = slotsMatrix.X_size;
-            return GetSequentialSlots(targetSlot, slotsMatrix, Mathf.Min(x_size, y_size));
+            int sequenceSize = Mathf.Min(slotsMatrix.X_size, slotsMatrix.Y_size);
+            return GetSequentialSlots(targetSlot, slotsMatrix, sequenceSize);
         }
 
         protected override IntVector2 GetFirstCoordinate(GridSlot targetSlot)

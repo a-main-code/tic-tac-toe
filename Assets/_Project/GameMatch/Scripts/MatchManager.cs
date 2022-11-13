@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using GameGrid;
@@ -9,14 +10,7 @@ namespace GameMatch
         [SerializeField] private IntVector2 _gridSize;
         [SerializeField] private GridArea _grid;
         [SerializeField] private PlayerType _currentPlayer;
-        private SlotsMatrix _slotsMatrix;
-        private SequentialChecker[] _sequenceCheckers = new SequentialChecker[]
-        {
-            new VerticalChecker(),
-            new HorizontalChecker(),
-            new MainDiagonalChecker(),
-            new SecondaryDiagonalChecker(),
-        };
+        private WinChecker _winChecker = new();
 
         public PlayerType CurrentPlayer => _currentPlayer;
 
@@ -25,54 +19,45 @@ namespace GameMatch
 
         private void Awake()
         {
-            BuildGrid();
+            BuildGrid();            
             SelectFirstPlayer();
         }
 
         private void BuildGrid()
         {
-            _slotsMatrix = new SlotsMatrix(_grid.Initialize(_gridSize, OnSlotClicked));
+            _grid.CreateSlots(_gridSize, OnSlotClicked);
+            _winChecker.SetSlotsMatrix(_grid.GetSlotsMatrix());
         }
 
-        private void OnSlotClicked(GridSlot slot)
+        private void OnSlotClicked(GridSlot slotClicked)
         {
-            slot.SetPlayer(_currentPlayer);
+            WinCheck(HasFinished(slotClicked));
+        }
 
-            GridSlot[] slotsSequence = GetSequence(slot);
-            bool hasFinished = slotsSequence != null;
-            
-            if (!hasFinished)
-            {
-                NextPlayer();
-            }
-            else
-            {
+        private bool HasFinished(GridSlot slotToMark)
+        {
+            slotToMark.SetPlayer(_currentPlayer);
+            return _winChecker.HasFinished(slotToMark);
+        }
+
+        private void WinCheck(bool hasWin)
+        {
+            if (hasWin)
                 Debug.Log($"Player {_currentPlayer} won!");
-            }
-        }
-
-        private GridSlot[] GetSequence(GridSlot slot)
-        {
-            foreach (var sequenceChecker in _sequenceCheckers)
-            {
-                GridSlot[] sequence = sequenceChecker.GetSequentialSlots(slot, _slotsMatrix);
-                if (sequence != null)
-                {
-                    return sequence;
-                }
-            }
-
-            return null;
+            else
+                SwitchToNextPlayer();
         }
 
         private void SelectFirstPlayer()
         {
-            SetPlayer(UnityEngine.Random.Range(0, PlayerTypeHelpers.Count));
+            int randomPlayerId = UnityEngine.Random.Range(0, PlayerTypeHelpers.Count);
+            SetPlayer(randomPlayerId);
         }
 
-        private void NextPlayer()
+        private void SwitchToNextPlayer()
         {
-            SetPlayer((int)_currentPlayer + 1);
+            int nextPlayerId = (int)_currentPlayer + 1;
+            SetPlayer(nextPlayerId);
         }
 
         private void SetPlayer(int playerId)
