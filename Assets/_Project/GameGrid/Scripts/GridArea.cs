@@ -26,7 +26,7 @@ namespace GameGrid
         private GridLine CreateLine(int width, int lineId, Action<GridSlot> onSlotClicked)
         {
             GridLine line = Instantiate<GridLine>(_gridLinePrefab, transform);
-            line.Initialize(width, lineId, onSlotClicked);
+            line.CreateSlots(width, lineId, onSlotClicked);
             return line;
         }
 
