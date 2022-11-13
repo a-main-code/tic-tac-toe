@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using SceneManagement;
 using GameMatch;
 using GameGrid;
@@ -11,7 +10,7 @@ namespace HUD
     public class UIResultScreen : MonoBehaviour
     {
         [SerializeField] private MatchManager _matchManager;
-        [SerializeField] private PlayerSymbol _playerSymbol;
+        [SerializeField] private UIResultFeedbackArea _feedbackArea;
         [SerializeField] private Button _restartButton;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _transitionStrength = 1;
@@ -30,7 +29,7 @@ namespace HUD
         private void PlayerWin(PlayerType player)
         {
             OpenScreen(true);
-            _playerSymbol.SetPlayer(player);
+            _feedbackArea.PlayerWin(player);
         }
 
         private void OpenScreen(bool open)
