@@ -48,9 +48,20 @@ namespace GameMatch
         private void WinCheck(bool hasWin)
         {
             if (hasWin)
+            {
                 OnPlayerWin?.Invoke(_currentPlayer);
+            }
             else
-                SwitchToNextPlayer();
+            {
+                if (!_winChecker.IsTie())
+                {
+                    SwitchToNextPlayer();
+                }
+                else
+                {
+                    OnPlayerWin?.Invoke(PlayerType.None);
+                }
+            }
         }
 
         private void SelectFirstPlayer()

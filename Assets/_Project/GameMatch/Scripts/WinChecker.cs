@@ -1,3 +1,4 @@
+using System;
 using GameGrid;
 
 namespace GameMatch
@@ -38,6 +39,11 @@ namespace GameMatch
             }
 
             return null;
+        }
+
+        internal bool IsTie()
+        {
+            return _slotsMatrix.GetFirstSlotOf(PlayerType.None) == null;
         }
     }
 }

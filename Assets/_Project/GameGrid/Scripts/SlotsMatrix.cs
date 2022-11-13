@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace GameGrid
 {
     public class SlotsMatrix
@@ -14,7 +10,21 @@ namespace GameGrid
         public SlotsMatrix(GridSlot[][] slotsMatrix)
         {
             _slotsMatrix = slotsMatrix;
-        }        
+        }
+
+        public GridSlot GetFirstSlotOf(PlayerType playerType)
+        {
+            for (int y = 0; y < _slotsMatrix.Length; y++)
+            {
+                for (int x = 0; x < _slotsMatrix[y].Length; x++)
+                {
+                    var slot = _slotsMatrix[y][x];
+                    if (slot.PlayerType == playerType)
+                        return slot;
+                }
+            }
+            return null;
+        }
 
         public GridSlot GetSlot(IntVector2 coordinate)
         {
