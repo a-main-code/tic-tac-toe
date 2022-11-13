@@ -20,7 +20,11 @@ namespace GameMatch
 
         private void Awake()
         {
-            BuildGrid();            
+            BuildGrid();
+        }
+
+        private void Start()
+        {
             SelectFirstPlayer();
         }
 
