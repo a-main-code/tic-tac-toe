@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using GameGrid;
@@ -8,9 +7,12 @@ namespace GameMatch
     public class MatchManager : MonoBehaviour
     {
         [SerializeField] private IntVector2 _gridSize;
+        [SerializeField] private IntVector2 _minRandomSize;
+        [SerializeField] private IntVector2 _maxRandomSize;
         [SerializeField] private GridArea _grid;
         [SerializeField] private PlayerType _currentPlayer;
         private WinChecker _winChecker = new();
+        private static bool _canApplyRandomSize;
 
         public PlayerType CurrentPlayer => _currentPlayer;
 
@@ -30,8 +32,22 @@ namespace GameMatch
 
         private void BuildGrid()
         {
-            _grid.CreateSlots(_gridSize, OnSlotClicked);
+            _grid.CreateSlots(GetGridSize(), OnSlotClicked);
             _winChecker.SetSlotsMatrix(_grid.GetSlotsMatrix());
+        }
+
+        private IntVector2 GetGridSize()
+        {
+            if (_canApplyRandomSize)
+            {
+                _gridSize.x = Random.Range(_minRandomSize.x, _maxRandomSize.x);
+                _gridSize.y = Random.Range(_minRandomSize.y, _maxRandomSize.y);
+            }
+            else
+            {
+                _canApplyRandomSize = true;
+            }
+            return _gridSize;
         }
 
         private void OnSlotClicked(GridSlot slotClicked)

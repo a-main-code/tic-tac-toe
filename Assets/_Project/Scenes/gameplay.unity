@@ -814,6 +814,26 @@ PrefabInstance:
       propertyPath: _grid
       value: 
       objectReference: {fileID: 9057287883447689712}
+    - target: {fileID: 5877542948831035253, guid: 68f74e6ed96cdae40b97d57485eef0e8,
+        type: 3}
+      propertyPath: _maxRandomSize.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877542948831035253, guid: 68f74e6ed96cdae40b97d57485eef0e8,
+        type: 3}
+      propertyPath: _maxRandomSize.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877542948831035253, guid: 68f74e6ed96cdae40b97d57485eef0e8,
+        type: 3}
+      propertyPath: _minRandomSize.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877542948831035253, guid: 68f74e6ed96cdae40b97d57485eef0e8,
+        type: 3}
+      propertyPath: _minRandomSize.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68f74e6ed96cdae40b97d57485eef0e8, type: 3}
 --- !u!1001 &9057287883447689711
