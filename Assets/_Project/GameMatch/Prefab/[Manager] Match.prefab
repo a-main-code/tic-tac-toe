@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 107424931771347963}
   - component: {fileID: 5877542948831035253}
+  - component: {fileID: 6301804298380732677}
   m_Layer: 0
   m_Name: '[Manager] Match'
   m_TagString: Untagged
@@ -49,3 +50,11 @@ MonoBehaviour:
     y: 3
   _grid: {fileID: 0}
   _currentPlayer: -1
+--- !u!81 &6301804298380732677
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3863195487152415294}
+  m_Enabled: 1

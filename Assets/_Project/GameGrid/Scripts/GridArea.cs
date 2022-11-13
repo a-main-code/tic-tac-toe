@@ -10,6 +10,7 @@ namespace GameGrid
         [SerializeField] private GridLine _gridLinePrefab;
         [SerializeField] private float _transitionTime = 0.1f;
         [SerializeField] private float _transitionStrength = 0.1f;
+        [SerializeField] private AudioSource _audioSource;
         private List<GridLine> _lines = new();
 
 
@@ -53,6 +54,7 @@ namespace GameGrid
         private void OnSlotClicked(GridSlot slot)
         {
             transform.DOShakeScale(_transitionTime, _transitionStrength);
+            _audioSource.Play();
         }
     }
 }

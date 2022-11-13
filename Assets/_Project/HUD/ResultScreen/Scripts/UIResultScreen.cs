@@ -15,6 +15,7 @@ namespace HUD
         [SerializeField] private Button _restartButton;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _transitionStrength = 1;
+        [SerializeField] private AudioSource _audioSource;
 
         private const float TRANSITION_TIME = 0.4f;
 
@@ -38,6 +39,11 @@ namespace HUD
             _canvasGroup.DOFade(targetAlpha, TRANSITION_TIME);
             _canvasGroup.blocksRaycasts = open;
             transform.DOShakeScale(TRANSITION_TIME, _transitionStrength);
+
+            if (open)
+            {
+                _audioSource.Play();
+            }
         }
 
         private void Restart()
