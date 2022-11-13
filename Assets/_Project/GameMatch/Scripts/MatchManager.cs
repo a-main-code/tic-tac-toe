@@ -10,14 +10,7 @@ namespace GameMatch
         [SerializeField] private IntVector2 _gridSize;
         [SerializeField] private GridArea _grid;
         [SerializeField] private PlayerType _currentPlayer;
-        private SlotsMatrix _slotsMatrix;
-        private SequentialChecker[] _sequenceCheckers = new SequentialChecker[]
-        {
-            new VerticalChecker(),
-            new HorizontalChecker(),
-            new MainDiagonalChecker(),
-            new SecondaryDiagonalChecker(),
-        };
+        private WinChecker _winChecker = new();
 
         public PlayerType CurrentPlayer => _currentPlayer;
 
@@ -27,7 +20,8 @@ namespace GameMatch
         private void Awake()
         {
             BuildGrid(
-                winCheckCallback: (bool hasWin) => {
+                winCheckCallback: (bool hasWin) =>
+                {
                     if (hasWin)
                         Debug.Log($"Player {_currentPlayer} won!");
                     else
@@ -39,32 +33,20 @@ namespace GameMatch
 
         private void BuildGrid(Action<bool> winCheckCallback)
         {
-            Action<GridSlot> onSlotClicked = (slotClicked) => winCheckCallback(HasFinished(slotClicked));
-            _slotsMatrix = _grid.Initialize(_gridSize, onSlotClicked);
+            Action<GridSlot> onSlotClicked = (slotClicked) =>
+            {
+                bool hasFinished = HasFinished(slotClicked);
+                winCheckCallback(hasFinished);
+            };
+            
+            SlotsMatrix slotsMatrix = _grid.Initialize(_gridSize, onSlotClicked);
+            _winChecker.SetSlotsMatrix(slotsMatrix);
         }
 
         private bool HasFinished(GridSlot slotToMark)
         {
             slotToMark.SetPlayer(_currentPlayer);
-
-            GridSlot[] slotsSequence = GetSequence(slotToMark);
-            
-            bool hasFinished = slotsSequence != null;
-            return hasFinished;
-        }
-
-        private GridSlot[] GetSequence(GridSlot slot)
-        {
-            foreach (var sequenceChecker in _sequenceCheckers)
-            {
-                GridSlot[] sequence = sequenceChecker.GetSequentialSlots(slot, _slotsMatrix);
-                if (sequence != null)
-                {
-                    return sequence;
-                }
-            }
-
-            return null;
+            return _winChecker.HasFinished(slotToMark);
         }
 
         private void SelectFirstPlayer()
