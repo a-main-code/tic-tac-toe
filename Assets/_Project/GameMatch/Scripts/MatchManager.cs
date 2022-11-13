@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using GameGrid;
@@ -12,7 +9,7 @@ namespace GameMatch
         [SerializeField] private IntVector2 _gridSize;
         [SerializeField] private GridArea _grid;
         [SerializeField] private PlayerType _currentPlayer;
-        private GridSlot[][] _slotsGrid;
+        private SlotsMatrix _slotsMatrix;
         private SequentialChecker[] _sequenceCheckers = new SequentialChecker[]
         {
             new VerticalChecker(),
@@ -34,7 +31,7 @@ namespace GameMatch
 
         private void BuildGrid()
         {
-            _slotsGrid = _grid.Initialize(_gridSize, OnSlotClicked);
+            _slotsMatrix = new SlotsMatrix(_grid.Initialize(_gridSize, OnSlotClicked));
         }
 
         private void OnSlotClicked(GridSlot slot)
@@ -58,7 +55,7 @@ namespace GameMatch
         {
             foreach (var sequenceChecker in _sequenceCheckers)
             {
-                GridSlot[] sequence = sequenceChecker.GetSequentialSlots(slot, _slotsGrid);
+                GridSlot[] sequence = sequenceChecker.GetSequentialSlots(slot, _slotsMatrix);
                 if (sequence != null)
                 {
                     return sequence;
