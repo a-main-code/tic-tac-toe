@@ -9,7 +9,7 @@ namespace GameGrid
     {
         [SerializeField] private GridLine _gridLinePrefab;
 
-        public GridSlot[][] Initialize(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
+        public SlotsMatrix Initialize(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
         {
             GridSlot[][] slotsGrid = new GridSlot[gridSize.y][];
             for (int lineId = 0; lineId < gridSize.y; lineId++)
@@ -17,7 +17,7 @@ namespace GameGrid
                 GridLine line = CreateLine(gridSize.x, lineId, onSlotClicked);
                 slotsGrid[lineId]  = line.Slots;
             }
-            return slotsGrid;
+            return new SlotsMatrix(slotsGrid);
         }
 
         private GridLine CreateLine(int width, int lineId, Action<GridSlot> onSlotClicked)

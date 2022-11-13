@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using GameGrid;
@@ -25,30 +26,31 @@ namespace GameMatch
 
         private void Awake()
         {
-            BuildGrid();
+            BuildGrid(
+                winCheckCallback: (bool hasWin) => {
+                    if (hasWin)
+                        Debug.Log($"Player {_currentPlayer} won!");
+                    else
+                        NextPlayer();
+                });
+            
             SelectFirstPlayer();
         }
 
-        private void BuildGrid()
+        private void BuildGrid(Action<bool> winCheckCallback)
         {
-            _slotsMatrix = new SlotsMatrix(_grid.Initialize(_gridSize, OnSlotClicked));
+            Action<GridSlot> onSlotClicked = (slotClicked) => winCheckCallback(HasFinished(slotClicked));
+            _slotsMatrix = _grid.Initialize(_gridSize, onSlotClicked);
         }
 
-        private void OnSlotClicked(GridSlot slot)
+        private bool HasFinished(GridSlot slotToMark)
         {
-            slot.SetPlayer(_currentPlayer);
+            slotToMark.SetPlayer(_currentPlayer);
 
-            GridSlot[] slotsSequence = GetSequence(slot);
-            bool hasFinished = slotsSequence != null;
+            GridSlot[] slotsSequence = GetSequence(slotToMark);
             
-            if (!hasFinished)
-            {
-                NextPlayer();
-            }
-            else
-            {
-                Debug.Log($"Player {_currentPlayer} won!");
-            }
+            bool hasFinished = slotsSequence != null;
+            return hasFinished;
         }
 
         private GridSlot[] GetSequence(GridSlot slot)
