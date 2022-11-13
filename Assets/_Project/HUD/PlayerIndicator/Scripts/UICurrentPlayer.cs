@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using GameMatch;
 using GameGrid;
 using TMPro;
 
-namespace Menu
+namespace HUD
 {
     public class UICurrentPlayer : MonoBehaviour
     {
