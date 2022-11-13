@@ -15,11 +15,16 @@ namespace GameMatch
         public PlayerType CurrentPlayer => _currentPlayer;
 
         public event UnityAction<PlayerType> OnCurrentPlayerChanged;
+        public event UnityAction<PlayerType> OnPlayerWin;
 
 
         private void Awake()
         {
-            BuildGrid();            
+            BuildGrid();
+        }
+
+        private void Start()
+        {
             SelectFirstPlayer();
         }
 
@@ -43,7 +48,7 @@ namespace GameMatch
         private void WinCheck(bool hasWin)
         {
             if (hasWin)
-                Debug.Log($"Player {_currentPlayer} won!");
+                OnPlayerWin?.Invoke(_currentPlayer);
             else
                 SwitchToNextPlayer();
         }
