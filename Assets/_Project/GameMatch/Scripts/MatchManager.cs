@@ -19,34 +19,34 @@ namespace GameMatch
 
         private void Awake()
         {
-            BuildGrid(
-                winCheckCallback: (bool hasWin) =>
-                {
-                    if (hasWin)
-                        Debug.Log($"Player {_currentPlayer} won!");
-                    else
-                        SwitchToNextPlayer();
-                });
-            
+            BuildGrid();            
             SelectFirstPlayer();
         }
 
-        private void BuildGrid(Action<bool> winCheckCallback)
+        private void BuildGrid()
         {
-            Action<GridSlot> onSlotClicked = (slotClicked) =>
-            {
-                bool hasFinished = HasFinished(slotClicked);
-                winCheckCallback(hasFinished);
-            };
-            
-            SlotsMatrix slotsMatrix = _grid.Initialize(_gridSize, onSlotClicked);
+            SlotsMatrix slotsMatrix = _grid.Initialize(_gridSize, OnSlotClicked);
             _winChecker.SetSlotsMatrix(slotsMatrix);
+        }
+
+        private void OnSlotClicked(GridSlot slotClicked)
+        {
+            bool hasFinished = HasFinished(slotClicked);
+            WinCheckCallback(hasFinished);
         }
 
         private bool HasFinished(GridSlot slotToMark)
         {
             slotToMark.SetPlayer(_currentPlayer);
             return _winChecker.HasFinished(slotToMark);
+        }
+
+        private void WinCheckCallback(bool hasWin)
+        {
+            if (hasWin)
+                Debug.Log($"Player {_currentPlayer} won!");
+            else
+                SwitchToNextPlayer();
         }
 
         private void SelectFirstPlayer()
