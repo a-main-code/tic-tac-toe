@@ -31,7 +31,7 @@ namespace GameMatch
                     if (hasWin)
                         Debug.Log($"Player {_currentPlayer} won!");
                     else
-                        NextPlayer();
+                        SwitchToNextPlayer();
                 });
             
             SelectFirstPlayer();
@@ -69,12 +69,14 @@ namespace GameMatch
 
         private void SelectFirstPlayer()
         {
-            SetPlayer(UnityEngine.Random.Range(0, PlayerTypeHelpers.Count));
+            int randomPlayerId = UnityEngine.Random.Range(0, PlayerTypeHelpers.Count);
+            SetPlayer(randomPlayerId);
         }
 
-        private void NextPlayer()
+        private void SwitchToNextPlayer()
         {
-            SetPlayer((int)_currentPlayer + 1);
+            int nextPlayerId = (int)_currentPlayer + 1;
+            SetPlayer(nextPlayerId);
         }
 
         private void SetPlayer(int playerId)
