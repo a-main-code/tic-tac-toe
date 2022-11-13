@@ -25,7 +25,7 @@ namespace GameMatch
 
         private void BuildGrid()
         {
-            SlotsMatrix slotsMatrix = _grid.Initialize(_gridSize, OnSlotClicked);
+            SlotsMatrix slotsMatrix = _grid.CreateSlots(_gridSize, OnSlotClicked);
             _winChecker.SetSlotsMatrix(slotsMatrix);
         }
 
