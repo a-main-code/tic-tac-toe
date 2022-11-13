@@ -484,7 +484,7 @@ PrefabInstance:
     - target: {fileID: 788145089539131553, guid: 856fbebf0c7430d4096ee5d74a4aa823,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 364.2
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 788145089539131553, guid: 856fbebf0c7430d4096ee5d74a4aa823,
         type: 3}
@@ -556,6 +556,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Area] Current player'
       objectReference: {fileID: 0}
+    - target: {fileID: 7048350841186643001, guid: 856fbebf0c7430d4096ee5d74a4aa823,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4925752720507975457, guid: b9d7789c50291d74f9ee3f8c207db537,
+        type: 2}
+    - target: {fileID: 7048350841186643001, guid: 856fbebf0c7430d4096ee5d74a4aa823,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7455343315265880159, guid: 856fbebf0c7430d4096ee5d74a4aa823,
         type: 3}
       propertyPath: _matchManager
@@ -576,6 +587,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 582782586}
     m_Modifications:
+    - target: {fileID: 779130689014501521, guid: 2581afcb6397d834684557ac8ecbd1e1,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4925752720507975457, guid: b9d7789c50291d74f9ee3f8c207db537,
+        type: 2}
+    - target: {fileID: 779130689014501521, guid: 2581afcb6397d834684557ac8ecbd1e1,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467238582357379944, guid: 2581afcb6397d834684557ac8ecbd1e1,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4925752720507975457, guid: b9d7789c50291d74f9ee3f8c207db537,
+        type: 2}
+    - target: {fileID: 1467238582357379944, guid: 2581afcb6397d834684557ac8ecbd1e1,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2433213938218496586, guid: 2581afcb6397d834684557ac8ecbd1e1,
         type: 3}
       propertyPath: m_Name
@@ -691,6 +724,17 @@ PrefabInstance:
       propertyPath: _matchManager
       value: 
       objectReference: {fileID: 1898216370}
+    - target: {fileID: 4922460225015689537, guid: 2581afcb6397d834684557ac8ecbd1e1,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4925752720507975457, guid: b9d7789c50291d74f9ee3f8c207db537,
+        type: 2}
+    - target: {fileID: 4922460225015689537, guid: 2581afcb6397d834684557ac8ecbd1e1,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6007452374588676993, guid: 2581afcb6397d834684557ac8ecbd1e1,
         type: 3}
       propertyPath: m_Alpha

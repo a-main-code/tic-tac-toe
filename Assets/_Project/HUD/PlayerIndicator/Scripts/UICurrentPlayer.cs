@@ -1,14 +1,13 @@
 using UnityEngine;
 using GameMatch;
 using GameGrid;
-using TMPro;
 
 namespace HUD
 {
     public class UICurrentPlayer : MonoBehaviour
     {
         [SerializeField] private MatchManager _matchManager;
-        [SerializeField] private TextMeshProUGUI _playerText;
+        [SerializeField] private PlayerSymbol _playerSymbol;
         
         private void Awake()
         {
@@ -17,7 +16,7 @@ namespace HUD
 
         private void SetPlayer(PlayerType player)
         {
-            _playerText.text = player.ToFriendlyString();
+            _playerSymbol.SetPlayer(player);
         }
     }
 }
