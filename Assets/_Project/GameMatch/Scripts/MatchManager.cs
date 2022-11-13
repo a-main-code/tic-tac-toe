@@ -31,8 +31,7 @@ namespace GameMatch
 
         private void OnSlotClicked(GridSlot slotClicked)
         {
-            bool hasFinished = HasFinished(slotClicked);
-            WinCheckCallback(hasFinished);
+            WinCheck(HasFinished(slotClicked));
         }
 
         private bool HasFinished(GridSlot slotToMark)
@@ -41,7 +40,7 @@ namespace GameMatch
             return _winChecker.HasFinished(slotToMark);
         }
 
-        private void WinCheckCallback(bool hasWin)
+        private void WinCheck(bool hasWin)
         {
             if (hasWin)
                 Debug.Log($"Player {_currentPlayer} won!");
