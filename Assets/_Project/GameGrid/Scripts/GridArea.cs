@@ -9,10 +9,9 @@ namespace GameGrid
         [SerializeField] private GridLine _gridLinePrefab;
         private List<GridLine> _lines = new();
 
-        public SlotsMatrix CreateSlots(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
+        public void CreateSlots(IntVector2 gridSize, Action<GridSlot> onSlotClicked)
         {
             CreateLines(lineWidth: gridSize.x, quantity: gridSize.y, onSlotClicked);
-            return GetSlotsMatrix();
         }
 
         private void CreateLines(int lineWidth, int quantity, Action<GridSlot> onSlotClicked)
@@ -31,7 +30,7 @@ namespace GameGrid
             return line;
         }
 
-        private SlotsMatrix GetSlotsMatrix()
+        public SlotsMatrix GetSlotsMatrix()
         {
             GridSlot[][] slotsGrid = new GridSlot[_lines.Count][];
             
