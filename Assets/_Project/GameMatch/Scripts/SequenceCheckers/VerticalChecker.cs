@@ -4,18 +4,18 @@ namespace GameMatch
 {
     public class VerticalChecker : LineChecker
     {
-        private IntVector2 _nextCoordinateSum = new IntVector2(1, 0);
+        private IntVector2 _nextCoordinateSum = new IntVector2(0, 1);
 
         protected override IntVector2 NextCoordinateSum => _nextCoordinateSum;
 
         public override GridSlot[] GetSequentialSlots(GridSlot targetSlot, SlotsMatrix slotsMatrix)
         {
-            return GetSequentialSlots(targetSlot, slotsMatrix, slotsMatrix.Y_size);
+            return GetSequentialSlots(targetSlot, slotsMatrix, sequenceSize: slotsMatrix.Y_size);
         }
 
         protected override IntVector2 GetFirstCoordinate(GridSlot targetSlot)
         {
-            return new IntVector2(0, targetSlot.Coordinate.y);
+            return new IntVector2(targetSlot.Coordinate.x, 0);
         }
     }
 }

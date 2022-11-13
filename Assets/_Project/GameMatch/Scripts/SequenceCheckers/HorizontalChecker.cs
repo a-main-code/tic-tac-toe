@@ -10,12 +10,12 @@ namespace GameMatch
 
         public override GridSlot[] GetSequentialSlots(GridSlot targetSlot, SlotsMatrix slotsMatrix)
         {
-            return GetSequentialSlots(targetSlot, slotsMatrix, slotsMatrix.X_size);
+            return GetSequentialSlots(targetSlot, slotsMatrix, sequenceSize: slotsMatrix.X_size);
         }
 
         protected override IntVector2 GetFirstCoordinate(GridSlot targetSlot)
         {
-            return new IntVector2(0, targetSlot.Coordinate.x);
+            return new IntVector2(0, targetSlot.Coordinate.y);
         }
     }
 }
