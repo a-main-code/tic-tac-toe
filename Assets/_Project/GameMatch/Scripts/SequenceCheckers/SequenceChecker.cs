@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using GameGrid;
-using System;
 
 namespace GameMatch
 {
@@ -12,7 +9,7 @@ namespace GameMatch
 
         public abstract GridSlot[] GetSequentialSlots(GridSlot targetSlot, SlotsMatrix slotsMatrix);
         
-        protected GridSlot[] GetSequentialSlots(GridSlot targetSlot, SlotsMatrix slotsMatrix, int sequenceSize)
+        public GridSlot[] GetSequentialSlots(GridSlot targetSlot, SlotsMatrix slotsMatrix, int sequenceSize)
         {
             if (targetSlot.PlayerType == PlayerType.None)
                 return null;

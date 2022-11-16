@@ -6,6 +6,7 @@ namespace GameMatch
     public class WinChecker
     {
         private SlotsMatrix _slotsMatrix;
+        private const int DEFAULT_SEQUENCE_SIZE = 3;
 
         private static SequentialChecker[] _winSequences = new SequentialChecker[]
         {
@@ -31,7 +32,7 @@ namespace GameMatch
         {
             foreach (var sequenceChecker in _winSequences)
             {
-                GridSlot[] sequence = sequenceChecker.GetSequentialSlots(slot, _slotsMatrix);
+                GridSlot[] sequence = sequenceChecker.GetSequentialSlots(slot, _slotsMatrix, DEFAULT_SEQUENCE_SIZE);
                 if (sequence != null)
                 {
                     return sequence;
