@@ -14,14 +14,12 @@ namespace GameGrid
 
         public void SetPlayer(PlayerType playerType)
         {
-            Debug.Log($"Setting player {playerType}");
             _playerType = playerType;
             ApplyCustomization(_customizationData.GetCustomization(playerType));
         }
 
         private void ApplyCustomization(PlayerCustomizationModel playerCustomization)
         {
-            Debug.Log($"Customization {playerCustomization.playerType}");
             SetText(playerCustomization.playerType.ToFriendlyString());
             _playerText.color = playerCustomization.markBackgroundColor;
 

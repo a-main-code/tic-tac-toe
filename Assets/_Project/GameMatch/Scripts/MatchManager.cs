@@ -52,6 +52,7 @@ namespace GameMatch
 
         private void OnSlotClicked(GridSlot slotClicked)
         {
+            Debug.Log($"Player {_currentPlayer}: {slotClicked.Coordinate}");
             WinCheck(HasFinished(slotClicked));
         }
 

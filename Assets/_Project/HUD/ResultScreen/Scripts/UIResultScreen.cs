@@ -28,6 +28,7 @@ namespace HUD
 
         private void PlayerWin(PlayerType player)
         {
+            Debug.Log($"<b>Player {player} won!</b>");
             OpenScreen(true);
             _feedbackArea.PlayerWin(player);
         }
