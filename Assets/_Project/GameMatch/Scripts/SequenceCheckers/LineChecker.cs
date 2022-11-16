@@ -6,9 +6,9 @@ namespace GameMatch
     {
         protected abstract IntVector2 NextCoordinateSum { get; }
 
-        protected sealed override IntVector2 GetNextCoordinate(GridSlot targetSlot)
+        protected sealed override IntVector2 GetNextCoordinate(IntVector2 currentCoordinate)
         {
-            return targetSlot.Coordinate + NextCoordinateSum;
+            return currentCoordinate + NextCoordinateSum;
         }
     }
 }

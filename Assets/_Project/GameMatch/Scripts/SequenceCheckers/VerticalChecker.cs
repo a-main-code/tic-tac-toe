@@ -13,9 +13,9 @@ namespace GameMatch
             return GetSequentialSlots(targetSlot, slotsMatrix, sequenceSize: slotsMatrix.Y_size);
         }
 
-        protected override IntVector2 GetFirstCoordinate(GridSlot targetSlot)
+        protected override IntVector2 GetFirstCoordinate(IntVector2 currentCoordinate)
         {
-            return new IntVector2(targetSlot.Coordinate.x, 0);
+            return new IntVector2(currentCoordinate.x, 0);
         }
     }
 }

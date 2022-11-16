@@ -15,18 +15,33 @@ namespace GameMatch
                 return null;
 
             _cacheSlots.Clear();
-            GridSlot currentSlot = slotsMatrix.GetSlot(GetFirstCoordinate(targetSlot));
+            IntVector2 nextCoordinate = GetFirstCoordinate(targetSlot.Coordinate);
 
-            for (int slotId = 0; slotId < sequenceSize; slotId++)
+            while (IsValidCheckCoordinate(nextCoordinate, slotsMatrix))
             {
+                GridSlot currentSlot = slotsMatrix.GetSlot(nextCoordinate);
+                nextCoordinate = GetNextCoordinate(nextCoordinate);
                 if (!IsFromSamePlayer(targetSlot, currentSlot))
-                    return null;
+                {
+                    _cacheSlots.Clear();
+                    continue;
+                }
                 
                 _cacheSlots.Add(currentSlot);
-                currentSlot = slotsMatrix.GetSlot(GetNextCoordinate(currentSlot));
+                bool isSequenceComplete = _cacheSlots.Count >= sequenceSize;
+
+                if (isSequenceComplete)
+                {
+                    return _cacheSlots.ToArray();
+                }
             }
 
-            return _cacheSlots.ToArray();
+            return null;
+        }
+
+        protected virtual bool IsValidCheckCoordinate(IntVector2 coordinate, SlotsMatrix slotsMatrix)
+        {
+            return coordinate.y < slotsMatrix.Y_size;
         }
 
         private bool IsFromSamePlayer(GridSlot targetSlot, GridSlot otherSlot)
@@ -34,7 +49,7 @@ namespace GameMatch
             return otherSlot != null && otherSlot.PlayerType == targetSlot.PlayerType;
         }
 
-        protected abstract IntVector2 GetFirstCoordinate(GridSlot targetSlot);
-        protected abstract IntVector2 GetNextCoordinate(GridSlot targetSlot);
+        protected abstract IntVector2 GetFirstCoordinate(IntVector2 currentCoordinate);
+        protected abstract IntVector2 GetNextCoordinate(IntVector2 currentCoordinate);
     }
 }

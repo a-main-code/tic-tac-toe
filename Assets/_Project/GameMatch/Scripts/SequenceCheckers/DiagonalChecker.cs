@@ -13,15 +13,15 @@ namespace GameMatch
             return GetSequentialSlots(targetSlot, slotsMatrix, sequenceSize);
         }
 
-        protected override IntVector2 GetFirstCoordinate(GridSlot targetSlot)
+        protected override IntVector2 GetFirstCoordinate(IntVector2 currentCoordinate)
         {
-            int x_coordinate = targetSlot.Coordinate.x - (targetSlot.Coordinate.y * Direction);
+            int x_coordinate = currentCoordinate.x - (currentCoordinate.y * Direction);
             return new IntVector2(x_coordinate, 0);
         }
 
-        protected override IntVector2 GetNextCoordinate(GridSlot targetSlot)
+        protected override IntVector2 GetNextCoordinate(IntVector2 currentCoordinate)
         {
-            IntVector2 nextCoordinate = new IntVector2(targetSlot.Coordinate);
+            IntVector2 nextCoordinate = new IntVector2(currentCoordinate);
             
             nextCoordinate.x += Direction;
             nextCoordinate.y += 1;
